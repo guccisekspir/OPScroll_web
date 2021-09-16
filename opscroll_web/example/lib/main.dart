@@ -49,12 +49,27 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+        body: SizedBox(
+          child: OpscrollWeb(
+            scrollCurve: Curves.bounceOut,
+            scrollSpeed: const Duration(milliseconds: 900),
+            onePageChildren: [
+              Container(
+                color: Colors.deepPurpleAccent,
+              ),
+              Container(
+                color: Colors.deepOrangeAccent,
+              ),
+              Container(
+                color: Colors.cyan,
+              ),
+              Container(
+                color: Colors.pinkAccent,
+              )
+            ],
+          ),
         ),
       ),
     );
