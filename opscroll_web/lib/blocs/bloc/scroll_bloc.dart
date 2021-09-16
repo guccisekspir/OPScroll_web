@@ -17,35 +17,36 @@ class ScrollBloc extends Bloc<ScrollEvent, ScrollState> {
     ScrollEvent event,
   ) async* {
     if (event is ScrollStart) {
+      //When [ScrollStart] called firstly we look at the [lastScrolledDateTime]
+      //If it is null that mean this is first scrolling
+      //so we dont controll any sequence and directly yield ScrollState
       if (lastScrolledDateTime == null) {
         lastScrolledDateTime = event.scrollStartDateTime;
         if (event.isUp) {
-          debugPrint("İlk kez geldi previous ");
+          //First time calling and scroll to previous
           yield (ScrollToPreviousPage(scrollPreviousDateTime: DateTime.now()));
         } else {
-          debugPrint("İlk kez geldi ve next");
+          //First time calling and scroll to next
 
           yield (ScrollToNextPage(scrollNextDateTime: DateTime.now()));
         }
       } else {
+        // If [lastScrolledDateTime] not null thats mean
+        // We have to controll difference [lastScrolledDateTime] and [event.scrollStartDateTime]
+        // Because [ScrollStart] is calling every Listener [PointerScrollEvent]
+        // We are controlling in there about
+        // is this event calling from current scrolling sequence or new scroll
+        // if difference shorter than 1 second it is meaning we are still in sequence
         Duration differenceDuration =
             lastScrolledDateTime!.difference(event.scrollStartDateTime);
-
-        debugPrint("ikinci kez geldi ve zaman farkı" +
-            differenceDuration.inSeconds.toString());
         if (-differenceDuration.inSeconds > 1) {
           if (event.isUp) {
-            debugPrint("scroll to previous");
+            // If it is new scrolling we will update [lastScrolledDateTime]
             lastScrolledDateTime = DateTime.now();
-            await Future.delayed(const Duration(milliseconds: 100));
-
             yield (ScrollToPreviousPage(
                 scrollPreviousDateTime: DateTime.now()));
           } else {
             lastScrolledDateTime = DateTime.now();
-
-            debugPrint("scroll to next");
-
             yield (ScrollToNextPage(scrollNextDateTime: DateTime.now()));
           }
         }

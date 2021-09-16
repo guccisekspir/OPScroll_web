@@ -13,7 +13,7 @@ class ScrollInitial extends ScrollState {
 class ScrollToNextPage extends ScrollState {
   final DateTime scrollNextDateTime;
 
-  ScrollToNextPage({required this.scrollNextDateTime});
+  const ScrollToNextPage({required this.scrollNextDateTime});
   @override
   // TODO: implement props
   List<Object?> get props => [scrollNextDateTime];
@@ -22,7 +22,7 @@ class ScrollToNextPage extends ScrollState {
 class ScrollToPreviousPage extends ScrollState {
   final DateTime scrollPreviousDateTime;
 
-  ScrollToPreviousPage({required this.scrollPreviousDateTime});
+  const ScrollToPreviousPage({required this.scrollPreviousDateTime});
   @override
   // TODO: implement props
   List<Object?> get props => [scrollPreviousDateTime];
