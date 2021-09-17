@@ -1,11 +1,11 @@
 {
-    "name": "opscroll_web_example",
-    "short_name": "opscroll_web_example",
+    "name": "opscroll_web",
+    "short_name": "opscroll_web",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Demonstrates how to use the opscroll_web plugin.",
+    "description": "One Page Scroll for Flutter Web.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
