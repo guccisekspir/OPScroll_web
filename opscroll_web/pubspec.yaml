@@ -1,7 +1,8 @@
 name: opscroll_web
-description: A new flutter plugin project.
+description: One Page Scrolling for Flutter Web.
 version: 0.0.1
-homepage:
+homepage: https://github.com/guccisekspir/OPScroll_web
+maintainer: Ahmet Cagri Altay (@guccisekspir)
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -15,6 +16,7 @@ dependencies:
   flutter_bloc: ^7.2.0
   equatable: ^2.0.3
   get_it: ^7.2.0
+  bloc: ^7.1.0
 
 dev_dependencies:
   flutter_test:

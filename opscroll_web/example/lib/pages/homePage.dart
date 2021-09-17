@@ -154,7 +154,7 @@ class _HomePageState extends State<HomePage> {
                         NavBarWidget(
                           assetPath: "assets/pubdev.png",
                           assetslaunchURL:
-                              'https://pub.dev/packages/opscrollweb',
+                              'https://pub.dev/packages/opscroll_web',
                           sizeHelper: sizeHelper,
                         ),
                         NavBarWidget(
