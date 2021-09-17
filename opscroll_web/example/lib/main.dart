@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:opscroll_web/opscroll_web.dart';
+import 'package:opscroll_web_example/helpers/sizeHelper.dart';
+import 'package:opscroll_web_example/helpers/themeHelper.dart';
+import 'package:opscroll_web_example/pages/homePage.dart';
+import 'package:opscroll_web_example/widgets/mainPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,12 +22,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
-
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-  }
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
@@ -48,30 +47,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: SizedBox(
-          child: OpscrollWeb(
-            scrollCurve: Curves.bounceOut,
-            scrollSpeed: const Duration(milliseconds: 900),
-            onePageChildren: [
-              Container(
-                color: Colors.deepPurpleAccent,
-              ),
-              Container(
-                color: Colors.deepOrangeAccent,
-              ),
-              Container(
-                color: Colors.cyan,
-              ),
-              Container(
-                color: Colors.pinkAccent,
-              )
-            ],
-          ),
-        ),
-      ),
-    );
+    return const MaterialApp(
+        debugShowCheckedModeBanner: false, home: HomePage());
   }
 }
