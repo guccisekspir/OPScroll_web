@@ -28,7 +28,7 @@ class NavBarWidget extends StatelessWidget {
           height: sizeHelper.height! * 0.1,
           width: sizeHelper.width! * 0.13,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(31),
               image: DecorationImage(
                   image: AssetImage(
                     assetPath,
