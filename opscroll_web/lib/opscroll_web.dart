@@ -12,11 +12,13 @@ class OpscrollWeb extends StatefulWidget {
   final Curve scrollCurve;
   final Duration scrollSpeed;
   final Axis scrollDirection;
+  final PageController pageController;
   static const MethodChannel _channel = MethodChannel('opscroll_web');
 
   const OpscrollWeb(
       {Key? key,
       required this.onePageChildren,
+      required this.pageController,
       this.scrollCurve = Curves.easeIn,
       this.scrollSpeed = const Duration(milliseconds: 900),
       this.scrollDirection = Axis.vertical})
@@ -33,12 +35,13 @@ class OpscrollWeb extends StatefulWidget {
 
 class _OpscrollWebState extends State<OpscrollWeb> {
   late ScrollBloc scrollBloc;
-  PageController pageController = PageController();
+  late PageController pageController;
 
   @override
   void initState() {
     // TODO: implement initState
     setupLocator();
+    pageController = widget.pageController;
     scrollBloc = getIt<ScrollBloc>();
     super.initState();
   }
