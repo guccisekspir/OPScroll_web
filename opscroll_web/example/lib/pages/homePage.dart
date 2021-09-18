@@ -57,6 +57,8 @@ class _HomePageState extends State<HomePage> {
             ? Stack(
                 children: [
                   OpscrollWeb(
+                    isFloatingButtonActive: true,
+                    isTouchScrollingActive: true,
                     pageController: pageController,
                     scrollSpeed: const Duration(milliseconds: 900),
                     onePageChildren: [

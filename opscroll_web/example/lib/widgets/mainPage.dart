@@ -83,7 +83,7 @@ class _MainPagesState extends State<MainPages>
             'Widget ${visibilityInfo.key} is ${visiblePercentage}% visible');
       },
       child: GestureDetector(
-        onTap: () {
+        /*onTap: () {
           if (widget.isEnd) {
             widget.pageController.previousPage(
                 duration: const Duration(milliseconds: 900),
@@ -93,40 +93,8 @@ class _MainPagesState extends State<MainPages>
                 duration: const Duration(milliseconds: 900),
                 curve: Curves.easeIn);
           }
-        },
+        },*/
         child: Scaffold(
-          floatingActionButton: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              FloatingActionButton(
-                backgroundColor: Colors.grey.withOpacity(0.3),
-                splashColor: Colors.pink,
-                focusColor: Colors.pink,
-                onPressed: () {
-                  widget.pageController.previousPage(
-                      duration: const Duration(milliseconds: 900),
-                      curve: Curves.easeIn);
-                },
-                child: const Icon(Icons.arrow_upward_sharp),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              !widget.isEnd
-                  ? FloatingActionButton(
-                      backgroundColor: Colors.grey.withOpacity(0.3),
-                      onPressed: () {
-                        widget.pageController.nextPage(
-                            duration: const Duration(milliseconds: 900),
-                            curve: Curves.easeIn);
-                      },
-                      child: const Icon(
-                        Icons.arrow_downward_sharp,
-                      ))
-                  : const SizedBox(),
-            ],
-          ),
           body: Container(
               height: sizeHelper.height,
               width: sizeHelper.width,
