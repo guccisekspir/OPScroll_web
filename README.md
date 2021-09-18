@@ -7,7 +7,7 @@
 
 <h1 align="center">OPScroll</h1>
 
-<p align="center">A simple and easy to use library that creates OnePage sites for Flutter Web Developers! Make a beautiful and smooth landing pages with OPScroll with in minutes. Try out our <a href="https://animated-text-kit.web.app/">Web Demo App</a>.</p><br>
+<p align="center">A simple and easy to use library that creates OnePage sites for Flutter Web Developers! Make a beautiful and smooth landing pages with OPScroll with in minutes. Try out our <a href="https://opscrolll.web.apps/">Web Demo App</a>.</p><br>
 
 # Table of contents
 
@@ -24,7 +24,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  opscroll_web: ^0.0.1
+  opscroll_web: ^0.0.2
 ```
 
 ### 2. Install it
@@ -61,10 +61,31 @@ Include it in your `build` method like:
 OpscrollWeb({
   onePageChildren:[],
   pageController:PageController(),
-  scrollCurve = Curves.easeIn,
-  scrollSpeed = const Duration(milliseconds: 900),
+  scrollCurve : Curves.easeIn,
+  scrollSpeed : const Duration(milliseconds: 900),
+  floatingButtonBackgroundColor :Colors.white,
+  floatingButtonSplashColor : Colors.white,
+  isFloatingButtonActive : false,
+  isTouchScrollingActive : false,
   scrollDirection = Axis.vertical,
 })
+```
+
+# Scrolling Options
+
+You can allow to scrolling by tapping.Just give the true value to `isTouchScrollingActive`
+
+```dart
+isTouchScrollingActive=true,
+```
+
+You can allow to scrolling by Floating Action Button.Just give the true value to `isFloatingButtonActive`.
+Also you can change button's background & splash colors.
+
+```dart
+isTouchScrollingActive=true, //Optional
+floatingButtonBackgroundColor :Colors.white, //Optional
+floatingButtonSplashColor : Colors.white, //Optional
 ```
 
 # UpComing
