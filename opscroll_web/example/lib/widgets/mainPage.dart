@@ -82,49 +82,36 @@ class _MainPagesState extends State<MainPages>
         debugPrint(
             'Widget ${visibilityInfo.key} is ${visiblePercentage}% visible');
       },
-      child: GestureDetector(
-        /*onTap: () {
-          if (widget.isEnd) {
-            widget.pageController.previousPage(
-                duration: const Duration(milliseconds: 900),
-                curve: Curves.easeIn);
-          } else {
-            widget.pageController.nextPage(
-                duration: const Duration(milliseconds: 900),
-                curve: Curves.easeIn);
-          }
-        },*/
-        child: Scaffold(
-          body: Container(
-              height: sizeHelper.height,
-              width: sizeHelper.width,
-              color: widget.color,
-              child: isSmallScreen(context)
-                  ? SmallScreenMainPageBodyWidget(
-                      centralWidgets: widget.centralWidgets,
-                      backgroundColor: widget.color,
-                      contentHeight: sizeHelper.height! * 0.4,
-                      contentWidth: sizeHelper.width! * 0.8,
-                      isInit: isInit,
-                      controller: controller,
-                      photoAssetPath: widget.photoAssetPath,
-                      animationController: animationController,
-                      labelString: widget.labelString,
-                      bodyString: widget.bodyString,
-                      sizeHelper: sizeHelper)
-                  : LargeScreenMainPageBodyWidget(
-                      centralWidgets: widget.centralWidgets,
-                      backgroundColor: widget.color,
-                      contentHeight: sizeHelper.height! * 0.7,
-                      contentWidth: sizeHelper.width! * 0.5,
-                      isInit: isInit,
-                      controller: controller,
-                      photoAssetPath: widget.photoAssetPath,
-                      animationController: animationController,
-                      labelString: widget.labelString,
-                      bodyString: widget.bodyString,
-                      sizeHelper: sizeHelper)),
-        ),
+      child: Scaffold(
+        body: Container(
+            height: sizeHelper.height,
+            width: sizeHelper.width,
+            color: widget.color,
+            child: isSmallScreen(context)
+                ? SmallScreenMainPageBodyWidget(
+                    centralWidgets: widget.centralWidgets,
+                    backgroundColor: widget.color,
+                    contentHeight: sizeHelper.height! * 0.4,
+                    contentWidth: sizeHelper.width! * 0.8,
+                    isInit: isInit,
+                    controller: controller,
+                    photoAssetPath: widget.photoAssetPath,
+                    animationController: animationController,
+                    labelString: widget.labelString,
+                    bodyString: widget.bodyString,
+                    sizeHelper: sizeHelper)
+                : LargeScreenMainPageBodyWidget(
+                    centralWidgets: widget.centralWidgets,
+                    backgroundColor: widget.color,
+                    contentHeight: sizeHelper.height! * 0.7,
+                    contentWidth: sizeHelper.width! * 0.5,
+                    isInit: isInit,
+                    controller: controller,
+                    photoAssetPath: widget.photoAssetPath,
+                    animationController: animationController,
+                    labelString: widget.labelString,
+                    bodyString: widget.bodyString,
+                    sizeHelper: sizeHelper)),
       ),
     );
   }
