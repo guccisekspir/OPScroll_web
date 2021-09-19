@@ -67,6 +67,7 @@ OpscrollWeb({
   floatingButtonSplashColor : Colors.white,
   isFloatingButtonActive : false,
   isTouchScrollingActive : false,
+  isFadingScroll: false,
   scrollDirection = Axis.vertical,
 })
 ```
@@ -90,21 +91,7 @@ floatingButtonSplashColor : Colors.white, //Optional
 
 # UpComing
 
-- [ ] Fade Scroll Effect
+- [+] Fade Scroll Effect
 - [ ] Drop Scroll Effect
 - [ ] Hero Scroll Effect
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

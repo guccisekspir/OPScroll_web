@@ -7,7 +7,7 @@
 
 <h1 align="center">OPScroll</h1>
 
-<p align="center">A simple and easy to use library that creates OnePage sites for Flutter Web Developers! Make a beautiful and smooth landing pages with OPScroll with in minutes. Try out our <a href="https://opscrolll.web.apps/">Web Demo App</a>.</p><br>
+<p align="center">A simple and easy to use library that creates OnePage sites for Flutter Web Developers! Make a beautiful and smooth landing pages with OPScroll with in minutes. Try out our <a href="https://opscrolll.web.app/">Web Demo App</a>.</p><br>
 
 # Table of contents
 
@@ -67,6 +67,7 @@ OpscrollWeb({
   floatingButtonSplashColor : Colors.white,
   isFloatingButtonActive : false,
   isTouchScrollingActive : false,
+  isFadingScroll: false,
   scrollDirection = Axis.vertical,
 })
 ```
@@ -79,8 +80,8 @@ You can allow to scrolling by tapping.Just give the true value to `isTouchScroll
 isTouchScrollingActive=true,
 ```
 
-You can allow to scrolling by Floating Action Button.Just give the true value to `isFloatingButtonActive`.
-Also you can change button's background & splash colors.
+You can allow to scrolling by Floating Action Button.Just give the true value to `isFloatingButtonActive`
+Also you can change background & splash colors.
 
 ```dart
 isTouchScrollingActive=true, //Optional
@@ -90,21 +91,6 @@ floatingButtonSplashColor : Colors.white, //Optional
 
 # UpComing
 
-- [ ] Fade Scroll Effect
+- [+] Fade Scroll Effect
 - [ ] Drop Scroll Effect
 - [ ] Hero Scroll Effect
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
