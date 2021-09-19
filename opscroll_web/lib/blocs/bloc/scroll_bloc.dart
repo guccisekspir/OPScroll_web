@@ -17,9 +17,9 @@ class ScrollBloc extends Bloc<ScrollEvent, ScrollState> {
     ScrollEvent event,
   ) async* {
     if (event is ScrollStart) {
-      //When [ScrollStart] called firstly we look at the [lastScrolledDateTime]
-      //If it is null that mean this is first scrolling
-      //so we dont controll any sequence and directly yield ScrollState
+      /// When [ScrollStart] called firstly we look at the [lastScrolledDateTime]
+      /// If it is null that mean this is first scrolling
+      /// so we dont controll any sequence and directly yield ScrollState
       if (lastScrolledDateTime == null) {
         lastScrolledDateTime = event.scrollStartDateTime;
         if (event.isUp) {
@@ -31,17 +31,17 @@ class ScrollBloc extends Bloc<ScrollEvent, ScrollState> {
           yield (ScrollToNextPage(scrollNextDateTime: DateTime.now()));
         }
       } else {
-        // If [lastScrolledDateTime] not null thats mean
-        // We have to controll difference [lastScrolledDateTime] and [event.scrollStartDateTime]
-        // Because [ScrollStart] is calling every Listener [PointerScrollEvent]
-        // We are controlling in there about
-        // is this event calling from current scrolling sequence or new scroll
-        // if difference shorter than 1 second it is meaning we are still in sequence
+        /// If [lastScrolledDateTime] not null thats mean
+        /// We have to controll difference [lastScrolledDateTime] and [event.scrollStartDateTime]
+        /// Because [ScrollStart] is calling every Listener [PointerScrollEvent]
+        /// We are controlling in there about
+        /// is this event calling from current scrolling sequence or new scroll
+        /// if difference shorter than 1 second it is meaning we are still in sequence
         Duration differenceDuration =
             lastScrolledDateTime!.difference(event.scrollStartDateTime);
         if (-differenceDuration.inSeconds > 1) {
           if (event.isUp) {
-            // If it is new scrolling we will update [lastScrolledDateTime]
+            /// If it is new scrolling we will update [lastScrolledDateTime]
             lastScrolledDateTime = DateTime.now();
             yield (ScrollToPreviousPage(
                 scrollPreviousDateTime: DateTime.now()));
