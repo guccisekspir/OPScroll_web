@@ -7,7 +7,17 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:opscroll_web/blocs/bloc/scroll_bloc.dart';
+import 'package:opscroll_web/circleAnimation.dart';
+import 'package:opscroll_web/dropAnimation.dart';
 import 'package:opscroll_web/locator.dart';
+
+enum ScrollingAnimationOptions { Fading, Drop, Circle, Default }
+
+/// [Scrolling Animation Options] are [Fading], [Drop] and [Circle] animation
+/// You have to choice one scrolling animations.
+
+/// [Scrolling Options] are [Touch] [Floating Action Button] and [Scroll]
+/// You can active every options for your widgets.
 
 /// [onePageChildren] is your One Page widgets. This widget size is initial Full device screen size.
 /// You must to create your one page widget's inside, responsive in your code.
@@ -33,6 +43,10 @@ import 'package:opscroll_web/locator.dart';
 /// [onTapGesture] you can define your own onTap functions with this callback.
 /// default function is scroll to next page.
 
+/// [isFadingScroll] is provide Fading effect while scrolling
+
+//
+
 class OpscrollWeb extends StatefulWidget {
   final List<Widget> onePageChildren;
   final Curve scrollCurve;
@@ -46,7 +60,8 @@ class OpscrollWeb extends StatefulWidget {
   //Scrolling Options
   final bool isTouchScrollingActive;
   final VoidCallback? onTapGesture;
-  final bool isFadingScroll;
+  final Color dropColor;
+  final ScrollingAnimationOptions scrollingAnimationOptions;
 
   static const MethodChannel _channel = MethodChannel('opscroll_web');
 
@@ -54,12 +69,13 @@ class OpscrollWeb extends StatefulWidget {
       {Key? key,
       required this.onePageChildren,
       required this.pageController,
+      this.scrollingAnimationOptions = ScrollingAnimationOptions.Default,
       this.onTapGesture,
       this.floatingButtonBackgroundColor = Colors.grey,
       this.floatingButtonSplashColor = Colors.grey,
       this.isFloatingButtonActive = false,
       this.isTouchScrollingActive = false,
-      this.isFadingScroll = false,
+      this.dropColor = Colors.blueAccent,
       this.scrollCurve = Curves.easeIn,
       this.scrollSpeed = const Duration(milliseconds: 900),
       this.scrollDirection = Axis.vertical})
@@ -81,11 +97,48 @@ class _OpscrollWebState extends State<OpscrollWeb>
 
   AnimationController? animationController;
 
+  late bool isCircle;
+  late bool isFading;
+  late bool isDrop;
+
   @override
   void initState() {
-    // TODO: implement initState
+    /// Have to choose only 1 scrolling animation
+    if (widget.scrollingAnimationOptions == ScrollingAnimationOptions.Drop &&
+            widget.scrollingAnimationOptions ==
+                ScrollingAnimationOptions.Fading ||
+        widget.scrollingAnimationOptions == ScrollingAnimationOptions.Drop &&
+            widget.scrollingAnimationOptions ==
+                ScrollingAnimationOptions.Circle ||
+        widget.scrollingAnimationOptions == ScrollingAnimationOptions.Circle &&
+            widget.scrollingAnimationOptions ==
+                ScrollingAnimationOptions.Fading) {
+      throw Exception("Choose only 1 scrolling animations ");
+    }
     setupLocator();
-    if (widget.isFadingScroll) {
+
+    isCircle =
+        widget.scrollingAnimationOptions == ScrollingAnimationOptions.Circle;
+    isFading =
+        widget.scrollingAnimationOptions == ScrollingAnimationOptions.Fading;
+    isDrop = widget.scrollingAnimationOptions == ScrollingAnimationOptions.Drop;
+
+    /// [fadingScroll] and [circleScroll] animations is same
+    /// both scroll animation after forward when completed will reverse
+    /// so if fading or circle animation is true we define same controller
+    if (isFading || isCircle) {
+      animationController = AnimationController(
+          vsync: this,
+          duration: Duration(milliseconds: widget.scrollSpeed.inMilliseconds))
+        ..addStatusListener((status) {
+          if (status == AnimationStatus.completed) {
+            animationController!.reverse();
+          }
+        });
+      animationController!.addListener(() {
+        setState(() {});
+      });
+    } else if (isDrop) {
       animationController = AnimationController(
           vsync: this,
           duration: Duration(milliseconds: widget.scrollSpeed.inMilliseconds))
@@ -116,12 +169,16 @@ class _OpscrollWebState extends State<OpscrollWeb>
 
   int currentPageIndex = 0;
 
-  Future<void> fadeScroll(bool isNext) async {
+  /// This function is provide that animation forward
+  /// and page changing
+  Future<void> reversedAnimatedScroll(bool isNext) async {
     animationController!.forward();
     setState(() {
       isNext ? currentPageIndex++ : currentPageIndex--;
     });
 
+    /// We have to wait current animation complete because we dont want
+    /// to change page while scroll animation is forwarding.
     await Future.delayed(
         Duration(milliseconds: (widget.scrollSpeed.inMilliseconds).toInt()));
     isNext
@@ -164,16 +221,20 @@ class _OpscrollWebState extends State<OpscrollWeb>
               widget.onePageChildren.length - 1) {
             debugPrint("*-*-* Last Page,will not scroll to next *-*-*");
           } else {
-            if (widget.isFadingScroll) {
-              fadeScroll(true);
+            if (isFading || isCircle) {
+              reversedAnimatedScroll(true);
+            } else if (isDrop) {
+              reversedAnimatedScroll(true);
             } else {
               defaultScroll(true);
             }
           }
         } else if (state is ScrollToPreviousPage) {
           debugPrint(pageController.page!.toInt().toString());
-          if (widget.isFadingScroll) {
-            fadeScroll(false);
+          if (isFading || isCircle) {
+            reversedAnimatedScroll(false);
+          } else if (isDrop) {
+            reversedAnimatedScroll(false);
           } else {
             defaultScroll(false);
           }
@@ -198,6 +259,9 @@ class _OpscrollWebState extends State<OpscrollWeb>
                       mainAxisAlignment: MainAxisAlignment.end,
                       mainAxisSize: MainAxisSize.min,
                       children: [
+                        /// Controll that is current page is first page
+                        /// if current page is first we wont build
+                        /// previous floating action button.
                         currentPageIndex != 0
                             ? FloatingActionButton(
                                 backgroundColor: widget
@@ -205,8 +269,10 @@ class _OpscrollWebState extends State<OpscrollWeb>
                                     .withOpacity(0.3),
                                 splashColor: widget.floatingButtonSplashColor,
                                 onPressed: () {
-                                  if (widget.isFadingScroll) {
-                                    fadeScroll(false);
+                                  if (isFading || isCircle) {
+                                    reversedAnimatedScroll(false);
+                                  } else if (isDrop) {
+                                    reversedAnimatedScroll(false);
                                   } else {
                                     defaultScroll(false);
                                   }
@@ -217,6 +283,10 @@ class _OpscrollWebState extends State<OpscrollWeb>
                         const SizedBox(
                           height: 10,
                         ),
+
+                        /// Controll that is current page is last index
+                        /// if current page is last we wont build
+                        /// next floating action button.
                         currentPageIndex != widget.onePageChildren.length - 1
                             ? FloatingActionButton(
                                 backgroundColor: widget
@@ -224,8 +294,10 @@ class _OpscrollWebState extends State<OpscrollWeb>
                                     .withOpacity(0.3),
                                 splashColor: widget.floatingButtonSplashColor,
                                 onPressed: () {
-                                  if (widget.isFadingScroll) {
-                                    fadeScroll(true);
+                                  if (isFading || isCircle) {
+                                    reversedAnimatedScroll(true);
+                                  } else if (isDrop) {
+                                    reversedAnimatedScroll(true);
                                   } else {
                                     defaultScroll(true);
                                   }
@@ -238,6 +310,10 @@ class _OpscrollWebState extends State<OpscrollWeb>
                     )
                   : const SizedBox()
               : const SizedBox(),
+
+          /// [GestureDetector] is for mobile compability
+          /// in mobile there are not scrolling mechanicsm
+          /// we have to listen [Drag] events
           body: GestureDetector(
             onVerticalDragUpdate: (details) {
               scrollBloc.add(ScrollStart(
@@ -248,29 +324,53 @@ class _OpscrollWebState extends State<OpscrollWeb>
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               child: Opacity(
-                opacity:
-                    widget.isFadingScroll ? 1 - animationController!.value : 1,
-                child: PageView(
-                  controller: pageController,
-                  scrollDirection: widget.scrollDirection,
-                  allowImplicitScrolling: true,
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  physics: const NeverScrollableScrollPhysics(),
-                  children: widget.onePageChildren
-                      .map((e) => GestureDetector(
-                            onTap: widget.onTapGesture ??
-                                () {
-                                  if (widget.isTouchScrollingActive) {
-                                    if (widget.isFadingScroll) {
-                                      fadeScroll(true);
-                                    } else {
-                                      defaultScroll(true);
-                                    }
-                                  }
-                                },
-                            child: e,
-                          ))
-                      .toList(),
+                opacity: isFading ? 1 - animationController!.value : 1,
+                child: Stack(
+                  children: [
+                    PageView(
+                      controller: pageController,
+                      scrollDirection: widget.scrollDirection,
+                      allowImplicitScrolling: true,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: widget.onePageChildren
+                          .map((e) => GestureDetector(
+                                onTap: widget.onTapGesture ??
+                                    () {
+                                      if (widget.isTouchScrollingActive) {
+                                        if (isFading || isCircle) {
+                                          reversedAnimatedScroll(true);
+                                        } else if (isDrop) {
+                                          reversedAnimatedScroll(true);
+                                        } else {
+                                          defaultScroll(true);
+                                        }
+                                      }
+                                    },
+                                child: e,
+                              ))
+                          .toList(),
+                    ),
+                    isDrop
+                        ? Align(
+                            alignment: Alignment.bottomCenter,
+                            child: DropAnimationWidget(
+                                animateColor: widget.dropColor,
+                                controller: animationController!,
+                                screenHeight:
+                                    MediaQuery.of(context).size.height,
+                                screenWidth: MediaQuery.of(context).size.width),
+                          )
+                        : const SizedBox(),
+                    isCircle
+                        ? CircleAnimation(
+                            screenHeight: MediaQuery.of(context).size.height,
+                            screenWidth: MediaQuery.of(context).size.width,
+                            animateColor: widget.dropColor,
+                            animationController: animationController!,
+                          )
+                        : const SizedBox()
+                  ],
                 ),
               ),
             ),
