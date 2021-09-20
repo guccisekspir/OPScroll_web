@@ -16,3 +16,11 @@
 
 * Mobile compability is come
 * New Scroll Animation !!! Fade Scrolling is here.
+
+# 0.2.0
+
+** Breaking now animation choosing is migrate to enum
+** You can choice your animation with ScrollingAnimationOptions.Fade
+** isFadeScrolling deprecated
+** New animations is here ! 
+** ScrollingAnimationOptions.Circle & ScrollingAnimationOptions.Drop is available.

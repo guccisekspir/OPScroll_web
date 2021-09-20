@@ -60,8 +60,8 @@ class _HomePageState extends State<HomePage> {
                     isFloatingButtonActive: true,
                     isTouchScrollingActive: true,
                     pageController: pageController,
-                    isFadingScroll: true,
-                    scrollSpeed: const Duration(milliseconds: 300),
+                    scrollingAnimationOptions: ScrollingAnimationOptions.Drop,
+                    scrollSpeed: const Duration(milliseconds: 600),
                     onePageChildren: [
                       Container(
                         color: Colors.cyanAccent,
