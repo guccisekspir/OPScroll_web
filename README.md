@@ -14,7 +14,14 @@
 
 - [Installing](#installing)
 - [Usage](#usage)
-- [Up Coming](#upcoming)
+- [Up Coming](#up-coming)
+- [Scrolling Options](#scrolling-options)
+- [Scrolling Animations](#scrolling-animations)
+  - [Fading Scrolling Animation](fading-scrolling-animation)
+  - [Circle Scrolling Animation](circle-scrolling-animation)
+  - [Drop Scrolling Animation](drop-scrolling-animation)
+    
+
 
 # Installing
 
@@ -67,7 +74,7 @@ OpscrollWeb({
   floatingButtonSplashColor : Colors.white,
   isFloatingButtonActive : false,
   isTouchScrollingActive : false,
-  isFadingScroll: false,
+  scrollingAnimationOptions: ScrollingAnimationOptions.Default,
   scrollDirection = Axis.vertical,
 })
 ```
@@ -89,8 +96,65 @@ floatingButtonBackgroundColor :Colors.white, //Optional
 floatingButtonSplashColor : Colors.white, //Optional
 ```
 
-# UpComing
+# Scrolling Animations
 
-- [+] Fade Scroll Effect
-- [ ] Drop Scroll Effect
-- [ ] Hero Scroll Effect
+There are 4 scrolling options for OPScroll. 
+
+```dart
+enum ScrollingAnimationOptions { Fading, Drop, Circle, Default }
+```
+You can only choice 1 scrolling animation options.
+
+---
+
+## Fading Scrolling Animation
+
+<img src="https://media4.giphy.com/media/LCx7dhjuWyTTSLm563/giphy.gif?cid=790b7611b5a1edd4ba7e478e5db108a2c75c637903a476d1&rid=giphy.gif&ct=g" align = "center" height = "300px">
+
+ ```dart
+ OpscrollWeb(
+    isFloatingButtonActive: true,
+    isTouchScrollingActive: true,
+    pageController: pageController,
+    scrollingAnimationOptions: ScrollingAnimationOptions.Fading,
+    scrollSpeed: const Duration(milliseconds: 900,
+    onePageChildren:[]),
+```
+---
+
+## Circle Scrolling Animation
+
+<img src="https://media0.giphy.com/media/xhY9fvl0vApRDNvwxe/giphy.gif?cid=790b7611cb6f537d7375c7d11c12242fcffd867b7e44ac18&rid=giphy.gif&ct=g" align = "center" height = "300px">
+
+ ```dart
+ OpscrollWeb(
+    isFloatingButtonActive: true,
+    isTouchScrollingActive: true,
+    pageController: pageController,
+    scrollingAnimationOptions: ScrollingAnimationOptions.Circle,
+    scrollSpeed: const Duration(milliseconds: 600,
+    onePageChildren:[]),
+```
+---
+
+## Drop Scrolling Animation
+
+<img src="https://media0.giphy.com/media/SRCY7kZ4v2pQGJ0Ifs/giphy.gif?cid=790b761198a615ed546125053ffceb6a261717ad2e4e99ef&rid=giphy.gif&ct=g" align = "center" height = "300px">
+
+ ```dart
+ OpscrollWeb(
+    isFloatingButtonActive: true,
+    isTouchScrollingActive: true,
+    pageController: pageController,
+    scrollingAnimationOptions: ScrollingAnimationOptions.Drop,
+    scrollSpeed: const Duration(milliseconds: 600,
+    onePageChildren:[]),
+```
+
+ 
+
+# Up Coming
+
+- [:white_check_mark:] Fade Scroll Effect
+- [:white_check_mark:] Drop Scroll Effect
+- [:hourglass_flowing_sand:] New Scroll Effects
