@@ -19,8 +19,12 @@
 
 # 0.2.0
 
-** Breaking now animation choosing is migrate to enum
-** You can choice your animation with ScrollingAnimationOptions.Fade
-** isFadeScrolling deprecated
-** New animations is here ! 
-** ScrollingAnimationOptions.Circle & ScrollingAnimationOptions.Drop is available.
+* Breaking now animation choosing is migrate to enum
+* You can choice your animation with ScrollingAnimationOptions.Fade
+* isFadeScrolling deprecated
+* New animations is here ! 
+* ScrollingAnimationOptions.Circle & ScrollingAnimationOptions.Drop is available.
+
+# 0.2.1
+
+* Minor bug fixes

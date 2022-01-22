@@ -7,7 +7,6 @@ import 'package:opscroll_web_example/helpers/sizeHelper.dart';
 import 'package:opscroll_web_example/helpers/themeHelper.dart';
 import 'package:opscroll_web_example/widgets/mainPage.dart';
 import 'package:opscroll_web_example/widgets/navBarWidget.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -60,7 +59,8 @@ class _HomePageState extends State<HomePage> {
                     isFloatingButtonActive: true,
                     isTouchScrollingActive: true,
                     pageController: pageController,
-                    scrollingAnimationOptions: ScrollingAnimationOptions.Drop,
+                    scrollingAnimationOptions:
+                        ScrollingAnimationOptions.Default,
                     scrollSpeed: const Duration(milliseconds: 600),
                     onePageChildren: [
                       Container(

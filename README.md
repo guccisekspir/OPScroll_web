@@ -9,6 +9,8 @@
 
 <p align="center">A simple and easy to use library that creates OnePage sites for Flutter Web Developers! Make a beautiful and smooth landing pages with OPScroll with in minutes. Try out our <a href="https://opscrolll.web.app/">Web Demo App</a>.</p><br>
 
+[![name](https://www.buymeacoffee.com/assets/img/guidelines/download-assets-2.svg)](https://www.buymeacoffee.com/shekspir)
+
 # Table of contents
 
 
