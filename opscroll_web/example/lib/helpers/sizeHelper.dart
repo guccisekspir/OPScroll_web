@@ -16,9 +16,9 @@ class SizeHelper {
       _sizeHelper.width = 600;
       _sizeHelper.height = 1200;
     } else {
-      if (fetchedContext != null)
+      if (fetchedContext != null) {
         _sizeHelper.ccontext = fetchedContext;
-      else {
+      } else {
         //size helper context null
       }
       if (_sizeHelper.width == null && _sizeHelper.height == null) {

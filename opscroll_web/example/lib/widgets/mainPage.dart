@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+
 import 'package:opscroll_web_example/helpers/sizeHelper.dart';
 import 'package:opscroll_web_example/widgets/smallScreenMainPage.dart';
 import 'package:video_player/video_player.dart';
@@ -80,7 +80,7 @@ class _MainPagesState extends State<MainPages>
           });
         }
         debugPrint(
-            'Widget ${visibilityInfo.key} is ${visiblePercentage}% visible');
+            'Widget ${visibilityInfo.key} is $visiblePercentage% visible');
       },
       child: Scaffold(
         body: Container(

@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:opscroll_web/opscroll_web.dart';
-import 'package:opscroll_web_example/helpers/sizeHelper.dart';
-import 'package:opscroll_web_example/helpers/themeHelper.dart';
 import 'package:opscroll_web_example/pages/homePage.dart';
-import 'package:opscroll_web_example/widgets/mainPage.dart';
 
 void main() {
   runApp(const MyApp());

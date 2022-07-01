@@ -14,7 +14,8 @@ class MyScrollState {
       /// We are controlling in there about
       /// is this event calling from current scrolling sequence or new scroll
       /// if difference shorter than 1 second it is meaning we are still in sequence
-      Duration differenceDuration = lastScrolledDateTime!.difference(scrollStartDateTime);
+      Duration differenceDuration =
+          lastScrolledDateTime!.difference(scrollStartDateTime);
       if (-differenceDuration.inSeconds > 1) {
         lastScrolledDateTime = DateTime.now();
         return true;

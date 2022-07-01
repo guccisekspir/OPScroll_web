@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:opscroll_web_example/helpers/sizeHelper.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class NavBarWidget extends StatelessWidget {
   const NavBarWidget(
@@ -13,16 +13,13 @@ class NavBarWidget extends StatelessWidget {
   final String assetPath;
   final String assetslaunchURL;
 
-  void launchURL(String url) async =>
-      await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
-
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: GestureDetector(
         onTap: () {
-          launchURL(assetslaunchURL);
+          launchUrlString(assetslaunchURL);
         },
         child: Container(
           height: sizeHelper.height! * 0.1,

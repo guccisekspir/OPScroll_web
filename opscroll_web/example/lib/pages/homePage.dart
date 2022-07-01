@@ -59,7 +59,8 @@ class _HomePageState extends State<HomePage> {
                     isFloatingButtonActive: true,
                     isTouchScrollingActive: true,
                     pageController: pageController,
-                    scrollingAnimationOptions: ScrollingAnimationOptions.Default,
+                    scrollingAnimationOptions:
+                        ScrollingAnimationOptions.Default,
                     scrollSpeed: const Duration(milliseconds: 600),
                     onePageChildren: [
                       Container(
@@ -69,13 +70,15 @@ class _HomePageState extends State<HomePage> {
                             const Spacer(),
                             Container(
                               height: sizeHelper.height! * 0.4,
-                              decoration:
-                                  const BoxDecoration(image: DecorationImage(image: AssetImage("assets/onlyPng.png"))),
+                              decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage("assets/onlyPng.png"))),
                             ),
                             Center(
                               child: ConstrainedBox(
                                 constraints: BoxConstraints(
-                                    maxHeight: sizeHelper.height! * 0.5, maxWidth: sizeHelper.width! * 0.6),
+                                    maxHeight: sizeHelper.height! * 0.5,
+                                    maxWidth: sizeHelper.width! * 0.6),
                                 child: AutoSizeText(
                                     "A simple and easy to use library that creates OnePage sites for Flutter Web Developers! ",
                                     textAlign: TextAlign.center,
@@ -93,7 +96,8 @@ class _HomePageState extends State<HomePage> {
                       MainPages(
                         color: themeHelper.land1Purp,
                         isEnd: false,
-                        bodyString: "Make a beautiful and smooth landing pages with OPScroll with in minutes",
+                        bodyString:
+                            "Make a beautiful and smooth landing pages with OPScroll with in minutes",
                         labelString: "Boost your Flutter Web Experience",
                         pageController: pageController,
                         assetString: assetsList[0],
@@ -102,8 +106,10 @@ class _HomePageState extends State<HomePage> {
                       MainPages(
                         color: themeHelper.lan3dAmber,
                         isEnd: false,
-                        bodyString: "Just use OPScroll and only focus your products",
-                        labelString: "Don't waste time for scrolling mechanicsm",
+                        bodyString:
+                            "Just use OPScroll and only focus your products",
+                        labelString:
+                            "Don't waste time for scrolling mechanicsm",
                         pageController: pageController,
                         assetString: assetsList[2],
                         photoAssetPath: photoAssetList[2],
@@ -111,7 +117,8 @@ class _HomePageState extends State<HomePage> {
                       MainPages(
                         color: themeHelper.land4Spring,
                         isEnd: false,
-                        bodyString: "Import OPScroll,define your pages,Taaa daaa",
+                        bodyString:
+                            "Import OPScroll,define your pages,Taaa daaa",
                         labelString: "Easy to Use",
                         pageController: pageController,
                         centralWidgets: const ["assets/usage.png"],
@@ -121,7 +128,8 @@ class _HomePageState extends State<HomePage> {
                       MainPages(
                         color: themeHelper.primaryColor,
                         isEnd: true,
-                        bodyString: "Make your landing pages with OPScroll power <3",
+                        bodyString:
+                            "Make your landing pages with OPScroll power <3",
                         labelString: "Go pub.dev",
                         pageController: pageController,
                         centralWidgets: const ["assets/social.png"],
@@ -140,24 +148,28 @@ class _HomePageState extends State<HomePage> {
                           child: Container(
                             height: sizeHelper.height! * 0.1,
                             width: sizeHelper.width! * 0.2,
-                            decoration:
-                                const BoxDecoration(image: DecorationImage(image: AssetImage("assets/onlyPng.png"))),
+                            decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage("assets/onlyPng.png"))),
                           ),
                         ),
                         const Spacer(),
                         NavBarWidget(
                           assetPath: "assets/pubdev.png",
-                          assetslaunchURL: 'https://pub.dev/packages/opscroll_web',
+                          assetslaunchURL:
+                              'https://pub.dev/packages/opscroll_web',
                           sizeHelper: sizeHelper,
                         ),
                         NavBarWidget(
                           assetPath: "assets/coffee.png",
-                          assetslaunchURL: 'https://www.buymeacoffee.com/shekspir',
+                          assetslaunchURL:
+                              'https://www.buymeacoffee.com/shekspir',
                           sizeHelper: sizeHelper,
                         ),
                         NavBarWidget(
                           assetPath: "assets/github2.png",
-                          assetslaunchURL: 'https://github.com/guccisekspir/OPScroll_web',
+                          assetslaunchURL:
+                              'https://github.com/guccisekspir/OPScroll_web',
                           sizeHelper: sizeHelper,
                         ),
                       ],

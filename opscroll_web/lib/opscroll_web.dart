@@ -1,6 +1,7 @@
+// ignore_for_file: constant_identifier_names
+
 import 'dart:async';
 
-import 'package:flutter/animation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -90,7 +91,8 @@ class OpscrollWeb extends StatefulWidget {
   State<OpscrollWeb> createState() => _OpscrollWebState();
 }
 
-class _OpscrollWebState extends State<OpscrollWeb> with SingleTickerProviderStateMixin {
+class _OpscrollWebState extends State<OpscrollWeb>
+    with SingleTickerProviderStateMixin {
   late PageController pageController;
   AnimationController? animationController;
   late bool isCircle;
@@ -101,40 +103,47 @@ class _OpscrollWebState extends State<OpscrollWeb> with SingleTickerProviderStat
   void initState() {
     /// Have to choose only 1 scrolling animation
     if (widget.scrollingAnimationOptions == ScrollingAnimationOptions.Drop &&
-            widget.scrollingAnimationOptions == ScrollingAnimationOptions.Fading ||
+            widget.scrollingAnimationOptions ==
+                ScrollingAnimationOptions.Fading ||
         widget.scrollingAnimationOptions == ScrollingAnimationOptions.Drop &&
-            widget.scrollingAnimationOptions == ScrollingAnimationOptions.Circle ||
+            widget.scrollingAnimationOptions ==
+                ScrollingAnimationOptions.Circle ||
         widget.scrollingAnimationOptions == ScrollingAnimationOptions.Circle &&
-            widget.scrollingAnimationOptions == ScrollingAnimationOptions.Fading) {
+            widget.scrollingAnimationOptions ==
+                ScrollingAnimationOptions.Fading) {
       throw Exception("Choose only 1 scrolling animations ");
     }
 
-    isCircle = widget.scrollingAnimationOptions == ScrollingAnimationOptions.Circle;
-    isFading = widget.scrollingAnimationOptions == ScrollingAnimationOptions.Fading;
+    isCircle =
+        widget.scrollingAnimationOptions == ScrollingAnimationOptions.Circle;
+    isFading =
+        widget.scrollingAnimationOptions == ScrollingAnimationOptions.Fading;
     isDrop = widget.scrollingAnimationOptions == ScrollingAnimationOptions.Drop;
 
     /// [fadingScroll] and [circleScroll] animations is same
     /// both scroll animation after forward when completed will reverse
     /// so if fading or circle animation is true we define same controller
     if (isFading || isCircle) {
-      animationController =
-          AnimationController(vsync: this, duration: Duration(milliseconds: widget.scrollSpeed.inMilliseconds))
-            ..addStatusListener((status) {
-              if (status == AnimationStatus.completed) {
-                animationController!.reverse();
-              }
-            });
+      animationController = AnimationController(
+          vsync: this,
+          duration: Duration(milliseconds: widget.scrollSpeed.inMilliseconds))
+        ..addStatusListener((status) {
+          if (status == AnimationStatus.completed) {
+            animationController!.reverse();
+          }
+        });
       animationController!.addListener(() {
         setState(() {});
       });
     } else if (isDrop) {
-      animationController =
-          AnimationController(vsync: this, duration: Duration(milliseconds: widget.scrollSpeed.inMilliseconds))
-            ..addStatusListener((status) {
-              if (status == AnimationStatus.completed) {
-                animationController!.reverse();
-              }
-            });
+      animationController = AnimationController(
+          vsync: this,
+          duration: Duration(milliseconds: widget.scrollSpeed.inMilliseconds))
+        ..addStatusListener((status) {
+          if (status == AnimationStatus.completed) {
+            animationController!.reverse();
+          }
+        });
       animationController!.addListener(() {
         setState(() {});
       });
@@ -187,7 +196,9 @@ class _OpscrollWebState extends State<OpscrollWeb> with SingleTickerProviderStat
                       /// previous floating action button.
                       currentPageIndex != 0
                           ? FloatingActionButton(
-                              backgroundColor: widget.floatingButtonBackgroundColor.withOpacity(0.3),
+                              backgroundColor: widget
+                                  .floatingButtonBackgroundColor
+                                  .withOpacity(0.3),
                               splashColor: widget.floatingButtonSplashColor,
                               onPressed: () {
                                 if (isFading || isCircle) {
@@ -210,7 +221,9 @@ class _OpscrollWebState extends State<OpscrollWeb> with SingleTickerProviderStat
                       /// next floating action button.
                       currentPageIndex != widget.onePageChildren.length - 1
                           ? FloatingActionButton(
-                              backgroundColor: widget.floatingButtonBackgroundColor.withOpacity(0.3),
+                              backgroundColor: widget
+                                  .floatingButtonBackgroundColor
+                                  .withOpacity(0.3),
                               splashColor: widget.floatingButtonSplashColor,
                               onPressed: () {
                                 if (isFading || isCircle) {
@@ -310,21 +323,28 @@ class _OpscrollWebState extends State<OpscrollWeb> with SingleTickerProviderStat
 
     /// We have to wait current animation complete because we dont want
     /// to change page while scroll animation is forwarding.
-    await Future.delayed(Duration(milliseconds: (widget.scrollSpeed.inMilliseconds).toInt()));
+    await Future.delayed(
+        Duration(milliseconds: (widget.scrollSpeed.inMilliseconds).toInt()));
     isNext
-        ? pageController.nextPage(duration: const Duration(milliseconds: 10), curve: widget.scrollCurve)
-        : pageController.previousPage(duration: const Duration(milliseconds: 10), curve: widget.scrollCurve);
+        ? pageController.nextPage(
+            duration: const Duration(milliseconds: 10),
+            curve: widget.scrollCurve)
+        : pageController.previousPage(
+            duration: const Duration(milliseconds: 10),
+            curve: widget.scrollCurve);
   }
 
   void defaultScroll(bool isNext) {
     if (isNext) {
-      pageController.nextPage(duration: widget.scrollSpeed, curve: widget.scrollCurve);
+      pageController.nextPage(
+          duration: widget.scrollSpeed, curve: widget.scrollCurve);
       setState(() {
         currentPageIndex++;
       });
     } else {
       if (!(pageController.page!.toInt() == 0)) {
-        pageController.previousPage(duration: widget.scrollSpeed, curve: widget.scrollCurve);
+        pageController.previousPage(
+            duration: widget.scrollSpeed, curve: widget.scrollCurve);
         setState(() {
           currentPageIndex--;
         });

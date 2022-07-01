@@ -1,6 +1,6 @@
 name: opscroll_web
 description: A library that provides create One-Page Scrolling for Flutter Web. Creating easy and fast one-page landing pages, also provide other scrolling animations like Fade&Drop&Water.
-version: 0.3.0
+version: 0.3.1
 homepage: https://github.com/guccisekspir/OPScroll_web
 maintainer: Ahmet Cagri Altay (@guccisekspir)
 

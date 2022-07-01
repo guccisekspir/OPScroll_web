@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:octo_image/octo_image.dart';
 import 'package:opscroll_web_example/helpers/sizeHelper.dart';
@@ -98,7 +98,7 @@ class LargeScreenMainPageBodyWidget extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: AnimatedOpacity(
-                      duration: Duration(milliseconds: 300),
+                      duration: const Duration(milliseconds: 300),
                       opacity: animationController.value,
                       child: ConstrainedBox(
                         constraints: BoxConstraints(
@@ -121,7 +121,7 @@ class LargeScreenMainPageBodyWidget extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: AnimatedOpacity(
-                          duration: Duration(milliseconds: 300),
+                          duration: const Duration(milliseconds: 300),
                           opacity: animationController.value.floorToDouble(),
                           child: AutoSizeText(bodyString,
                               style: GoogleFonts.roboto(
