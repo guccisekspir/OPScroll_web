@@ -1,3 +1,6 @@
+# 0.3.2
+* Unit tests added
+
 # 0.3.1
 * Fixed minor bugs & deleted unnecessary things
 

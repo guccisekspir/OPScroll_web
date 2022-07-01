@@ -54,11 +54,13 @@ class OpscrollWeb extends StatefulWidget {
   final Duration scrollSpeed;
   final Axis scrollDirection;
   final PageController pageController;
-  //Floating Action Button
+
+  ///Floating Action Button
   final bool isFloatingButtonActive;
   final Color floatingButtonSplashColor;
   final Color floatingButtonBackgroundColor;
-  //Scrolling Options
+
+  ///Scrolling Options
   final bool isTouchScrollingActive;
   final VoidCallback? onTapGesture;
   final Color dropColor;

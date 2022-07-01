@@ -1,3 +1,4 @@
+// ignore: file_names
 class MyScrollState {
   DateTime? lastScrolledDateTime;
   bool startScroll(DateTime scrollStartDateTime) {
