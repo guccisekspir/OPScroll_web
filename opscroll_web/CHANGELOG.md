@@ -28,3 +28,7 @@
 # 0.2.1
 
 * Minor bug fixes
+
+# 0.3.0
+
+* Blocs and other unneccesary dependecies is removed
